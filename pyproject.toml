@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=77.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sape-f-mcp"
+dynamic = ["version"]
+description = "SAPÉ f-Win MCP: Controlled file system access with granular permission management for LLMs"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "SAPÉ smart bud", email = "info@sapebud.com"}]
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+keywords = ["mcp", "model-context-protocol", "file-access", "permissions", "ai", "llm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    # The server imports mcp.server.MCPServer, which is a 2.x API. A lower
+    # floor lets a resolver install 1.x, which fails at import.
+    "mcp>=2.0",
+    # Needed for the GUI only — `main.py --cli` never imports it. Kept a hard
+    # dependency rather than an extra until the package layout is fixed: this
+    # installs the desktop application, and splitting it out would only add a
+    # second way for a clean install to come out incomplete.
+    "PyQt6>=6.6.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "mypy>=1.0",
+]
+
+[project.scripts]
+sape-f-mcp = "sape_f_mcp.main:run"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "src._version.__version__"}
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[project.urls]
+Homepage = "https://sapebud.com"
+Repository = "https://github.com/sapebud/f-mcp"
+Documentation = "https://docs.sapebud.com"

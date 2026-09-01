@@ -1,0 +1,50 @@
+# SAPÉ f-MCP – Language Flag Icons Mapping
+# Generated: 2026-08-01
+# Updated: 2026-08-01 (Removed Arabic, Greek, Japanese, Korean - Phase 1 ES/EN only)
+# Source: flagcdn.com (SVG flags)
+# Status: Phase 1 Complete (Spanish & English); Other flags archived
+
+Language | Country Code | Flag File | Status | Phase
+---------|-------------|-----------|--------|-------
+Spanish | ES | spain.svg | ✓ ACTIVE | Phase 1
+English | EN | england.svg | ✓ ACTIVE | Phase 1
+French | FR | france.svg | ✓ READY | Future
+German | DE | germany.svg | ✓ READY | Future
+Portuguese (Brazil) | PT-BR | brazil.svg | ✓ READY | Future
+Dutch | NL | netherlands.svg | ✓ READY | Future
+Finnish | FI | finland.svg | ✓ READY | Future
+Swedish | SV | sweden.svg | ✓ READY | Future
+Danish | DA | denmark.svg | ✓ READY | Future
+Icelandic | IS | iceland.svg | ✓ READY | Future
+Polish | PL | poland.svg | ✓ READY | Future
+Czech | CS | czech.svg | ✓ READY | Future
+Romanian | RO | romania.svg | ✓ READY | Future
+Hungarian | HU | hungary.svg | ✓ READY | Future
+Italian | IT | italy.svg | ✓ READY | Future
+Slovak | SK | slovakia.svg | ✓ READY | Future
+Russian | RU | russia.svg | ✓ READY | Future
+Chinese (Mandarin) | ZH-CN | china.svg | ✓ READY | Future
+
+# REMOVED (Phase 1 exclusion):
+# Arabic (Saudi Arabia) | AR-SA | saudi-arabia.svg | REMOVED
+# Greek | EL | greece.svg | REMOVED
+# Japanese | JA | japan.svg | REMOVED
+# Korean | KO | south-korea.svg | REMOVED
+
+# Summary:
+# - Phase 1 Languages: 2 (Spanish, English)
+# - Prepared for Future: 16 (European and Asian languages, excluding Arabic/Greek/Japanese/Korean)
+# - Format: SVG, scalable
+# - Download Date: 2026-08-01
+
+# IMPLEMENTATION NOTES:
+# Phase 1: Spanish (ES) and English (EN) only
+# - These 2 languages are the current focus
+# - Full legal documents translated and ready
+# - Desktop GUI supports these languages with flags
+#
+# Future Phases:
+# - Flag files prepared for 16 additional languages
+# - Legal documents for future languages can be prepared when needed
+# - Arabic, Greek, Japanese, Korean removed from scope due to token/resource constraints
+# - Can be re-added in future releases if required

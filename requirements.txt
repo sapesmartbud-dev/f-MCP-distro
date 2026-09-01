@@ -1,0 +1,15 @@
+# SAPÉ f-MCP — runtime dependencies for the desktop application
+# Python 3.10+ required (match/case, type union syntax).
+#
+#   pip install -r requirements.txt        the GUI and the server
+#   pip install "mcp>=2.0"                 the server alone (--cli), no Qt needed
+#
+# Development tools are not installed here — see requirements-dev.txt.
+
+# Model Context Protocol server framework.
+# The server imports mcp.server.MCPServer, which is a 2.x API; 1.x fails at import.
+mcp>=2.0
+
+# Desktop GUI framework. Needed only for the GUI: `main.py --cli` runs headless
+# and does not import PyQt6.
+PyQt6>=6.6.1
