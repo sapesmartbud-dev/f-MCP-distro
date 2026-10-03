@@ -1,2 +1,10 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Linux packaging files run inside Linux containers: CRLF would break bash and the .desktop file.
+_distro/Linux/AppRun eol=lf
+_distro/Linux/sape-f-mcp eol=lf
+_distro/Linux/*.sh eol=lf
+_distro/Linux/sape-f-mcp-gui eol=lf
+_distro/Linux/*.desktop eol=lf
+_distro/Linux/*.spec eol=lf

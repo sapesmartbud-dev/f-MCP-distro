@@ -1,0 +1,11 @@
+#!/bin/sh
+# SAPÉ f-MCP — desktop-menu launcher (installed by the .deb and .rpm packages).
+#
+# Same as /usr/bin/sape-f-mcp (the per-user permissions database), but also switches to the
+# per-user data directory first: a desktop menu starts programs from an arbitrary directory,
+# and the server resolves relative paths against the working directory.
+set -e
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/sape/f-mcp"
+mkdir -p "$DATA_DIR"
+cd "$DATA_DIR"
+exec /usr/bin/sape-f-mcp "$@"

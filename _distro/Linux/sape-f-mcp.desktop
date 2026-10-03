@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=SAPÉ f-MCP
+GenericName=File access for LLMs
+Comment=Controlled file system access with granular permissions for LLMs
+Exec=@EXEC@
+Icon=sape-f-mcp
+Terminal=false
+Categories=Development;Utility;
+Keywords=MCP;files;filesystem;permissions;LLM;
+StartupWMClass=sape-f-mcp

@@ -80,7 +80,7 @@ class MCPConfigGenerator:
         if getattr(sys, "frozen", False):
             return InstallationInfo(
                 install_type="frozen",
-                entry_point=sys.executable,
+                entry_point=cls._frozen_executable(),
                 is_valid=True,
             )
 
@@ -120,6 +120,21 @@ class MCPConfigGenerator:
                 "working sape-f-mcp command is installed."
             ),
         )
+
+    @staticmethod
+    def _frozen_executable() -> str:
+        """The command that starts this frozen build again later.
+
+        Inside an AppImage ``sys.executable`` lives under a temporary
+        ``/tmp/.mount_*`` directory that disappears as soon as the application
+        exits, so a client configured with it could never start the server.
+        The AppImage runtime exports ``$APPIMAGE``, the path of the .AppImage
+        file itself, which is what has to be named instead.
+        """
+        appimage = os.environ.get("APPIMAGE")
+        if appimage and Path(appimage).is_file():
+            return appimage
+        return sys.executable
 
     @staticmethod
     def _main_module() -> Path:

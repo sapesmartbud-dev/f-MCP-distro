@@ -206,3 +206,29 @@ def test_settings_page_offers_the_same_config_as_the_wizard(
     # Nothing a client would reject: no reference keys, no unknown fields.
     assert list(shown) == ["mcpServers"]
     assert set(shown["mcpServers"]["sape-f-mcp"]) == {"command", "args", "env"}
+
+
+def test_frozen_appimage_config_names_the_appimage_not_its_mount(
+    monkeypatch, tmp_path: Path
+) -> None:
+    """Inside an AppImage, sys.executable sits under a /tmp/.mount_* directory
+    that is gone once the GUI exits, so a client configured with it can never
+    start the server. The runtime's $APPIMAGE is the file that persists."""
+    appimage = tmp_path / "sape-f-mcp-x86_64.AppImage"
+    appimage.write_bytes(b"")
+    monkeypatch.setattr(sys, "frozen", True, raising=False)
+    monkeypatch.setattr(sys, "executable", "/tmp/.mount_sapeXYZ/usr/lib/sape-f-mcp/sape-f-mcp")
+    monkeypatch.setenv("APPIMAGE", str(appimage))
+
+    detected = MCPConfigGenerator.detect_installation()
+
+    assert detected.install_type == "frozen"
+    assert detected.entry_point == str(appimage)
+
+
+def test_frozen_without_appimage_uses_the_executable(monkeypatch) -> None:
+    monkeypatch.setattr(sys, "frozen", True, raising=False)
+    monkeypatch.setattr(sys, "executable", "/opt/sape-f-mcp/sape-f-mcp")
+    monkeypatch.delenv("APPIMAGE", raising=False)
+
+    assert MCPConfigGenerator.detect_installation().entry_point == "/opt/sape-f-mcp/sape-f-mcp"

@@ -1,0 +1,14 @@
+#!/bin/sh
+# SAPÉ f-MCP — command on PATH (installed as /usr/bin/sape-f-mcp by the .deb and .rpm).
+#
+# Left to itself the application keeps permissions.db (and tool_log.jsonl beside it) next to
+# main.py, which here is /opt/sape-f-mcp/_internal/ — read-only for users and replaced on
+# every upgrade. So unless the user has chosen a database with $FILE_MCP_DB (an explicit --db
+# still wins over both), it is pointed at the per-user data directory. The working directory
+# is left alone: from a terminal it is the user's own.
+if [ -z "${FILE_MCP_DB:-}" ]; then
+    DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/sape/f-mcp"
+    mkdir -p "$DATA_DIR"
+    export FILE_MCP_DB="$DATA_DIR/permissions.db"
+fi
+exec /opt/sape-f-mcp/sape-f-mcp "$@"

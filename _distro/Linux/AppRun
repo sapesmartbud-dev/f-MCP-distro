@@ -1,0 +1,14 @@
+#!/bin/sh
+# SAPÉ f-MCP — AppImage entry point.
+#
+# Left to itself the application keeps permissions.db (and tool_log.jsonl beside it) next to
+# main.py, which inside an AppImage is the read-only squashfs mount. So unless the user has
+# chosen a database with $FILE_MCP_DB (an explicit --db still wins over both), it is pointed
+# at the per-user data directory.
+HERE="$(dirname "$(readlink -f "$0")")"
+if [ -z "${FILE_MCP_DB:-}" ]; then
+    DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/sape/f-mcp"
+    mkdir -p "$DATA_DIR"
+    export FILE_MCP_DB="$DATA_DIR/permissions.db"
+fi
+exec "$HERE/usr/lib/sape-f-mcp/sape-f-mcp" "$@"
