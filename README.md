@@ -4,6 +4,7 @@
 
 SAPÉ f-MCP is a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes file operations to an LLM client — Claude Desktop, or anything else that speaks MCP — and refuses any path that isn't covered by an explicit rule. It ships with a desktop GUI for writing those rules and watching what the model actually did.
 
+**This is version 0.2.1.2**
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 ---
@@ -65,7 +66,6 @@ macOS is POSIX like Linux and nothing in the code is expected to fail there, but
 ## Running it
 
 ```bash
-git clone https://github.com/sapebud/f-mcp.git
 cd f-mcp
 python -m venv .venv
 # Windows:  .venv\Scripts\activate
